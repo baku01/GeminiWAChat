@@ -110,7 +110,7 @@ class GeminiService {
         this.genAI = new GoogleGenerativeAI(apiKey);
         this.modelConfig = {
             model: "gemini-1.5-pro-latest",
-            systemInstruction: "Evite usar linguagem formal ou rebuscada...",
+            systemInstruction: "", //Prompt incial ex: "Você é um modelo que responde as perguntas sobre a minha livraria"
         };
         this.generationConfig = {
             temperature: 1,
@@ -239,7 +239,7 @@ class WhatsAppService {
     }
     listenSingleContatcMenssage() {
         this.client.onMessage(async (message) => {
-            if (!message.isGroupMsg && message.from === '55xxxxxxxxxxx@c.us') { // Checando se o remetente é o contato desejado
+            if (!message.isGroupMsg && message.from === '55xxxxxxxxxxx@c.us') { // Checando se o remetente é o contato desejado // Coloque o número e o dd 
                 try {
                     const reply = await this.messageHandler(message.body);  // Usando o handler externo para obter a resposta
                     this.client.sendText(message.from, reply)
@@ -273,9 +273,8 @@ constructor(sessionName, messageHandler) {
 ```
 
 - **`sessionName`**: Nome da sessão do Venom Bot.
-- **
 
-`messageHandler`**: Função para processar as mensagens recebidas.
+- **`messageHandler`**: Função para processar as mensagens recebidas.
 
 #### Inicializar o Cliente 🚀
 
@@ -299,7 +298,7 @@ async initialize() {
 ```javascript
 listenSingleContatcMenssage() {
     this.client.onMessage(async (message) => {
-        if (!message.isGroupMsg && message.from === '55xxxxxxxxxxx@c.us') { // Checando se o remetente é o contato desejado
+        if (!message.isGroupMsg && message.from === '55xxxxxxxxxxx@c.us') { // Checando se o remetente é o contato desejado // Coloque o número e o dd 
             try {
                 const reply = await this.messageHandler(message.body);  // Usando o handler externo para obter a resposta
                 this.client.sendText(message.from, reply)
@@ -385,7 +384,7 @@ whatsappService.initialize();
 1. **Inicie o WhatsAppService**:
     - Inicie o serviço do Venom Bot com a função `handleMessage` para processar as mensagens recebidas.
       ```sh
-      node index.js
+      node IntegrationController.js
       ```
 
 2. **Interaja com o bot**:
